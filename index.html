@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Internship Progress Tracker</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Internship Progress Tracker</h1>
+    <div class="actions">
+      <form id="add-week-form" autocomplete="off">
+        <input type="text" id="week-input" placeholder="Enter week name (e.g., Week 1)" required>
+        <button type="submit">Add Week</button>
+      </form>
+      <form id="add-task-form" autocomplete="off">
+        <select id="week-select"></select>
+        <input type="text" id="task-input" placeholder="Enter task name" required>
+        <input type="text" id="estimate-input" placeholder="Estimate">
+        <button type="submit">Add Task</button>
+      </form>
+    </div>
+  </header>
+  <main>
+    <table id="progress-table">
+      <thead>
+        <tr>
+          <th class="week-col">Week</th>
+          <th class="task-col">Task</th>
+          <th class="estimate-col">Estimate</th>
+          <th class="status-col">Status</th>
+          <th class="comments-col">Comments</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Dynamic content -->
+      </tbody>
+    </table>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>
