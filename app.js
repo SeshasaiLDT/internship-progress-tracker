@@ -6,7 +6,18 @@ const taskInput = document.getElementById('task-input');
 const estimateInput = document.getElementById('estimate-input');
 const tableBody = document.querySelector('#progress-table tbody');
 
+// Load weeks from localStorage or start with empty array
 let weeks = [];
+try {
+  const saved = localStorage.getItem('internship-progress-weeks');
+  if (saved) weeks = JSON.parse(saved);
+} catch (e) {
+  weeks = [];
+}
+
+function saveWeeks() {
+  localStorage.setItem('internship-progress-weeks', JSON.stringify(weeks));
+}
 
 function updateWeekDropdown() {
   weekSelect.innerHTML = '';
@@ -51,6 +62,7 @@ function renderTable() {
       });
       statusSelect.addEventListener('change', e => {
         task.status = e.target.value;
+        saveWeeks();
         renderTable();
       });
       statusCell.appendChild(statusSelect);
@@ -62,6 +74,7 @@ function renderTable() {
       commentInput.placeholder = 'Add comment';
       commentInput.addEventListener('change', e => {
         task.comments = e.target.value;
+        saveWeeks();
       });
       commentsCell.appendChild(commentInput);
       tr.appendChild(taskCell);
@@ -79,6 +92,7 @@ addWeekForm.addEventListener('submit', e => {
   if (weekName) {
     weeks.push({ name: weekName, tasks: [] });
     weekInput.value = '';
+    saveWeeks();
     updateWeekDropdown();
     renderTable();
   }
@@ -99,6 +113,7 @@ addTaskForm.addEventListener('submit', e => {
     });
     taskInput.value = '';
     estimateInput.value = '';
+    saveWeeks();
     renderTable();
   }
 });
